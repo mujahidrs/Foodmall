@@ -35,3 +35,4 @@ Route::get('/mycart/deleteAll', [App\Http\Controllers\CartController::class, 'de
 Route::post('/mycart/changeAddress', [App\Http\Controllers\CartController::class, 'changeAddress'])->name('mycart.changeAddress');
 Route::post('/mycart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('mycart.checkout');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::get('/detail_order/{invoice_code}', [App\Http\Controllers\ProfileController::class, 'detail_order'])->name('detail_order');

@@ -82,7 +82,14 @@
                         @foreach($orderByInvoice as $data)
                         <div class="card">
                             <div class="card-header">
-                                #{{ $data->invoice_code }}
+                                <div class="row">
+                                    <div class="col">
+                                        #{{ $data->invoice_code }}
+                                    </div>
+                                    <div class="col text-right">
+                                        <a href="{{ route("detail_order", $data->invoice_code) }}" class="btn btn-primary">Detail</a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 @if(count($belum_bayar) > 0)
@@ -98,7 +105,7 @@
                                                     {{$order->total_quantity}}
                                                 </div>
                                                 <div class="col">
-                                                    {{$order->total_quantity * $order->product->price}}
+                                                    {{rupiah($order->total_quantity * $order->product->price)}}
                                                 </div>
                                             </div>
                                             

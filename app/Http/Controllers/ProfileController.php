@@ -48,6 +48,28 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function detail_order($invoice_code)
+    {
+        $carts = Order::select('product_id', DB::raw('SUM(quantity) as total_quantity'))
+                ->groupBy('product_id')
+                ->where('status_id', '1')
+                ->where('user_id', Auth::user()->id)
+                ->get();
+
+        $orders = Order::selectRaw('product_id, status_id, payment_id, created_at, invoice_code, SUM(quantity) as total_quantity')->groupBy(['product_id', 'status_id'])->where("user_id", Auth::user()->id)->where("invoice_code", $invoice_code)->get();
+        $total = 0;
+
+        foreach($orders as $order){
+            $total += ($order->product->price * $order->total_quantity);
+        }
+
+        return view("detail_order", [
+            "orders" => $orders,
+            "carts" => $carts,
+            "total" => $total
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

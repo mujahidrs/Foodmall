@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -104,7 +105,7 @@
                                                         <img src="{{ $product->image }}" class="card-img-top">
                                                         <div class="card-body">
                                                             <h5 class="card-title">{{ $product->name }}</h5>
-                                                            <h6 class="card-title">{{ $product->price }}</h6>
+                                                            <h6 class="card-title">{{ rupiah($product->price) }}</h6>
                                                             <input type="range" id="star" min="0" max="5" value="{{ $product->star }}" disabled>
                                                             <p class="card-text">{{ $product->desc }}</p>
                                                         </div>
